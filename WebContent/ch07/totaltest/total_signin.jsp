@@ -1,9 +1,6 @@
-<%@page import="dto.MemberVO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-	MemberDAO dao = MemberDAO.getInstance();
-	ArrayList<MemberVO> memList = dao.getMemberList();
-	%>
-	<!-- 
+<!-- 
 	문제1) 아이디, 비밀번호를 입력받고 전송 할 폼 양식을 작성하세요.
 		
 		아이디 name = mem_id
@@ -32,14 +25,21 @@
 		- 메시지 내용도 자유롭게
 		- p태그에 메세지를 출력해주세면 됩니다.
  -->
-	<div class="container">
-
-		<form action="total_signin_process.jsp" method="post">
-			아이디 : <input type="text" name="mem_id"><br/> 
-			비밀번호 : <input	type="password" name="mem_pw"><br/> 
-			<input type = "submit" value="전송">
-		</form>
-		
-	</div>
+ 
+	<form action="total_signin_process.jsp" method="post">
+		<p>아이디: <input type="text" name="mem_id"/> </p>
+		<p>비밀번호: <input type="text" name="mem_pw"/> </p>
+		<input type="submit" value="로그인"> 
+		<a href="./total_signup.jsp"><input type="button" value="회원가입"></a><br>
+	</form> 
+	<%
+		if(request.getAttribute("msg") != null){
+			
+	%>
+			<p style="color:red;">** <%=request.getAttribute("msg") %></p>
+	<%
+		}
+	%>
+<%-- 			<p>${msg not empty}</p> --%>
 </body>
 </html>

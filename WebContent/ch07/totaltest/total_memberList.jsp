@@ -1,10 +1,10 @@
-<%@page import="dao.MemberDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dto.MemberVO"%>
 <%@page import="java.util.List"%>
+<%@page import="dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,66 +26,50 @@
 	
 	문제2)			
  -->
-<%
-	String id = (String) session.getAttribute("id");
-
-	ArrayList<MemberVO> list = (ArrayList<MemberVO>) session.getAttribute("list");
-
-
-%>
-	<%
-		if(id != null){
-	%>
-			<script>
-				alert("<%=id%>님 환영합니다!");
-			</script>
-	<%
-		}
-	%>
-	
-	<c:set var="list" value="<%=list %>"></c:set>
-	
-	<%			
-		if(list != null){
-	%>
-			<table border="1">
-				<tr>
-					<td>프로필</td>
-					<td>아이디</td>
-					<td>이름</td>
-					<td>성별</td>
-				</tr>
-				<c:forEach items="${list }" var="mv">
-					<tr>
-						<td> <img src="/JSPBook/resources/images/${mv.getFilename() }"/></td>
-						<td>${mv.getMem_id() }</td>
-						<td>${mv.getMem_name() }</td>
-						<td>${mv.getMem_sex() }</td>
-					</tr>
-				</c:forEach>
-			</table>	
-	<%
-		}else{
-	%>
-			<script>
-				alert("조회할 회원정보가 존재하지 않습니다.");
-			</script>
-	<%
-		}
-	%>			
-
-
+ <script type="text/javascript">
+ 	let msg = '<c:out value="${msg }"/>'; 
+ 	alert(msg);
+ </script>
+ 
+ <%
+ 	MemberDAO dao = MemberDAO.getInstance();
+ 	List<MemberVO> memberList = dao.getMemberList();
+ %>
+ 	<h3>회원 목록</h3>
+ 	<hr>
+ 	<br><a href="#">회원등록</a><br><br>
+ 	
+ 	<table border="1">
+ 		<thead>
+ 			<tr>
+ 				<th>이미지</th>
+ 				<th>회원정보</th>
+ 				<th>버튼</th>
+ 			</tr>
+ 		</thead>
+ 		<tbody>
+ 		<c:set var="memList" value="<%=memberList %>"/>
+ 		<c:forEach var="item" items="${memList }">
+ 			<tr> 
+ 				<td>
+ 				<img alt="" src="<%=request.getContextPath()%>/resources/images/${item.filename}" width="200px">
+ 				</td>
+ 				<td>
+ 				<p>아 이 디 : ${item.mem_id }</p>
+ 				<p>비밀번호 : ${item.mem_pw }</p>
+ 				<p>이  름 : ${item.mem_name }</p>
+ 				<p>성  별 : ${item.mem_sex }</p>
+ 				</td>
+ 				<td>
+ 				<a href="#">상세정보</a>
+ 				</td>
+ 			</tr>
+ 		</c:forEach>
+ 			
+ 		</tbody>
+ 	
+ 	</table>
+ 	
+ 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -21,13 +21,15 @@
 	
 	전송경로 : total_signup_process.jsp
  -->
+ 
 	<form action="total_signup_process.jsp" method="post" enctype="multipart/form-data">
-		<p>아이디 : <input type="text" name="mem_id"> </p>
-		<p>비밀번호 : <input type="password" name="mem_pw"> </p>
-		<p>이름 : <input type="text" name="mem_name"> </p>
-		<p>성별 : <input type="text" name="mem_sex"> </p>
-		<p>프로필 이미지 : <input type="file" name="filename"> </p>
-		<input type="submit" value="가입하기">
+		<p>아이디: <input type="text" name="mem_id"/> </p>
+		<p>비밀번호: <input type="text" name="mem_pw"/> </p>
+		<p>이름: <input type="text" name="mem_name"/> </p>
+		<p>성별: <input type="radio" name="mem_sex" value="남자" checked="checked"/>남자 
+			<input type="radio" name="mem_sex" value="여자"/>여자 </p>
+		<p>프로필 이미지: <input type="file" name="filename"/> </p>
+		<input type="submit" value="가입하기"/>
 	</form>
 </body>
 </html>
