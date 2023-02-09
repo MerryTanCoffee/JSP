@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action = "delete02_process.jsp" method = "post">
+<form action = "delete_process.jsp" method = "post">
 	ID : <input type = "text" name = "id"/><br/>
 	PW : <input type = "text" name = "pw"/><br/>
 	<input type = "submit" value = "submit"/><br/>
