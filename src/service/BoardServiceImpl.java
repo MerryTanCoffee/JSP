@@ -39,4 +39,5 @@ public class BoardServiceImpl implements IBoardService{
 		return boardDao.updateBoard(bv);
 	}
 	
+	
 }
